@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjoccpwdwdkir"]
+
+[ext_resource type="PackedScene" uid="uid://cig4tnvloa2to" path="res://floor.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://beocw77kuif1w" path="res://tank.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node"]
+
+[node name="Floor" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Camera Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.38552, 0.9227, 0, -0.9227, 0.38552, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.93764, -0.0738611, -0.339669, 0.347607, 0.199234, 0.916229, 0, -0.977164, 0.212485, 0, 14.6772, 0)
+
+[node name="Tank" parent="." instance=ExtResource("2_0xm2m")]

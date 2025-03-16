@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://beocw77kuif1w"]
+
+[ext_resource type="Script" uid="uid://db2f5ao836p6a" path="res://tank.gd" id="1_6lwfj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+size = Vector3(1, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(2, 3, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xm2m"]
+radius = 1.0
+height = 4.0
+
+[node name="Tank" type="CharacterBody3D"]
+script = ExtResource("1_6lwfj")
+
+[node name="Turret" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+mesh = SubResource("BoxMesh_1bvp3")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 0.966448, -0.256863, 0, 0.256863, 0.966448, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_h2yge")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("CapsuleShape3D_0xm2m")

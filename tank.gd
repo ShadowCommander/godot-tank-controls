@@ -1,13 +1,19 @@
 extends CharacterBody3D
 
-var speed = 1000
-var turn_speed = 3
+var max_speed = 1000
+var turn_speed = PI
+
+var local_velocity: float = 0.0
+
+var max_acceleration = 93.86
+var acceleration_scale = 1.0
 
 func _physics_process(delta: float) -> void:
 	var target_speed = Input.get_axis("movement_backward", "movement_forward")
 	var target_turn_rate = Input.get_axis("movement_right", "movement_left")
 	rotate_y(target_turn_rate * turn_speed * delta)
-	velocity = -transform.basis.z * target_speed * speed * delta
+	local_velocity = clampf((max_acceleration * delta) + local_velocity, (-max_speed / 3) * target_speed, max_speed * target_speed)
+	velocity = -transform.basis.z * local_velocity
 	move_and_slide()
 
 # Rotation speed is based on speed of forward movement. If standing still, it's 3.5 seconds to spin 360. If moving 70 kph it's 6 seconds
